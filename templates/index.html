@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Python</title>
+    <style>
+        body {
+            background-color: #d3effb;
+        }
+        
+        .lista {
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+            margin: 0 auto 0 auto;
+        }
+        
+        .linha {
+            display: flex;
+            width: 100%
+        }
+        
+        .coluna {
+            text-align: center;
+            /* background-color: blue; */
+            width: 100%;
+            border: 1px solid black;
+        }
+        
+        .secondColor {
+            background-color: green;
+        }
+        
+        .headerlist {
+            background-color: black;
+            color: white;
+        }
+        
+        .forms {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            margin: 30px auto 0 auto;
+        }
+        
+        .forms div {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+        
+        .imagem {
+            position: absolute;
+            z-index: -20;
+            top: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Form Flask Minimalista</h1>
+    </center>
+    <div class="lista">
+        <div class="linha headerlist">
+            <div class="coluna">Nome</div>
+            <div class="coluna">Data</div>
+            <div class="coluna">Action
+            </div>
+
+        </div>
+        {% for i,x in enumerate(values) %} {% if resto(i,2) == 0 %}
+        <div class="linha secondColor">
+            <div class="coluna">{{x[1]}}</div>
+            <div class="coluna">{{x[5]}}</div>
+            <div class="coluna">
+                <Button onclick="handleDelete(this.id)" id={{x[0]}}>Delete</Button>
+            </div>
+        </div>
+        {% else %}
+        <div class="linha">
+            <div class="coluna">{{x[1]}}</div>
+            <div class="coluna">{{x[5]}}</div>
+            <div class="coluna">
+                <Button id={{x[0]}}>Delete</Button>
+            </div>
+        </div>{% endif %} {% endfor %}
+    </div>
+
+    <form class="forms" id="formCadastro" action="/" method="post">
+        <div>
+            <label for="">id</label>
+            <input type="number" name="id_pessoa">
+        </div>
+        <div>
+            <label for="">nome</label>
+            <input type="text" name="nome">
+        </div>
+        <div>
+            <label for="">RG</label>
+            <input type="number" name="rg">
+        </div>
+        <div>
+            <label for="">CPF</label>
+            <input type="number" name="cpf">
+        </div>
+        <div>
+            <label for="">Data Nascimento</label>
+            <input type="date" name="data_nascimento">
+        </div>
+        <div>
+            <label for="">Data Admissão</label>
+            <input type="date" name="data_admissao">
+        </div>
+        <div>
+            <label for="">Função</label>
+            <input type="number" name="funcao">
+        </div>
+        <div>
+            <input type="submit" value="Cadastrar">
+
+        </div>
+    </form>
+    <img class="imagem" src="https://media1.giphy.com/media/Yc65Sk2Hwkzgk/giphy.gif" alt="aae">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+    <script>
+        let handleDelete = (id) => {
+            axios({
+                method: 'DELETE',
+                url: '/',
+                data: {
+                    id: id
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
