@@ -97,7 +97,7 @@
             <div class="coluna">{{x[1]}}</div>
             <div class="coluna">{{x[5]}}</div>
             <div class="coluna">
-                <Button id={{x[0]}}>Delete</Button>
+                <Button onclick="handleDelete(this.id)" id={{x[0]}}>Delete</Button>
             </div>
         </div>{% endif %} {% endfor %}
     </div>
@@ -137,16 +137,19 @@
         </div>
     </form>
     <img class="imagem" src="https://media1.giphy.com/media/Yc65Sk2Hwkzgk/giphy.gif" alt="aae">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
     <script>
-        let handleDelete = (id) => {
-            axios({
+        let handleDelete = async(id) => {
+            let response = await axios({
                 method: 'DELETE',
                 url: '/',
                 data: {
                     id: id
                 }
             });
+
+            await console.log(response);
         }
     </script>
 </body>
